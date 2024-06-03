@@ -6,6 +6,17 @@
 
     <div class="quiz content">
         <h2>All Quizzes</h2>
+        
+        <% if (quizzes.length > 0) { %>
+            <% quizzes.forEach(quiz => { %>
+      
+              <h3 class="title"><%= quiz.title %></h3>
+              <p class="author"><%= quiz.snippet %></p>
+      
+            <% }) %>
+          <% } else { %>
+            <p>There are no quizzes to display...</p>
+          <% } %>
     </div>
     <%- include('./partials/footer.ejs') %>
     
