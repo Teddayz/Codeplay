@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 
 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // adding quizzes into the database
@@ -45,6 +46,41 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     //res.send('<p>about page</p>');
     res.render('about', {title: 'About'});
+});
+
+app.post('/quizzes', (req, res) => {
+    console.log(req.body);
+    const quiz = new Quiz(req.body);
+
+    quiz.save()
+    .then((result) => {
+        res.redirect('/quizzes');
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+});
+
+app.get('/quizzes/:id', (req, res) => {
+    const id = req.params.id;
+    Quiz.findById(id)
+    .then(result => {
+        res.render('details', { quiz: result, title: 'Quiz Name' })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+})
+
+app.delete('/quizzes/:id', (req, res) => {
+    const id = req.params.id;
+    Quiz.findByIdAndDelete(id)
+        .then(result => {
+        res.json({ redirect: '/quizzes'})
+        })
+        .catch(err => {
+            console.log(err);
+        })
 });
 
 app.get('/quiz/create', (req, res) => {

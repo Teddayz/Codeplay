@@ -5,13 +5,13 @@
     <%- include('./partials/nav.ejs') %>
 
     <div class="create-quiz content">
-        <form>
+        <form action="/quizzes" method="POST">
             <label for="title">Quiz Name</label>
-            <input type="text" id="title" required>
+            <input type="text" id="title" name="title" required>
             <label for="snippet">Author</label>
-            <input type="text" id="snippet" required>
+            <input type="snippet" id="snippet" name ="author" required>
             <label for="body">Questions</label>
-            <textarea id="body" required></textarea>
+            <textarea id="body" name="question" required></textarea>
             <button>Submit</button>
         </form>
     </div>

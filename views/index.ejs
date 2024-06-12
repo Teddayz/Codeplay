@@ -9,10 +9,10 @@
         
         <% if (quizzes.length > 0) { %>
             <% quizzes.forEach(quiz => { %>
-      
+              <a class="single" href="/quizzes/<%= quiz._id %>">
               <h3 class="title"><%= quiz.title %></h3>
               <p class="author"><%= quiz.snippet %></p>
-      
+              </a>
             <% }) %>
           <% } else { %>
             <p>There are no quizzes to display...</p>
