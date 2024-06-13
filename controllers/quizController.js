@@ -18,12 +18,12 @@ const quiz_details = (req, res) => {
         res.render('quizzes/details', { quiz: result, title: 'Quiz Name' })
     })
     .catch(err => {
-        console.log(err);
+        res.status(404).render('404', { title: 'Quiz not found' });
     })
 };
 
 const quiz_create_get = (req, res) => {
-    res.render('quizzes/create-quiz', {title: 'Create Quiz'});
+    res.render('quizzes/create_quiz', {title: 'Create Quiz'});
 };
 
 const quiz_create_post = (req, res) => {
@@ -49,6 +49,7 @@ const quiz_delete = (req, res) => {
             console.log(err);
         })
     };
+    
 
 module.exports = {
     quiz_index, 

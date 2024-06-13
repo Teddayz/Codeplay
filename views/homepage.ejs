@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homepage</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Sign Up</a>
+    <% if (user) { %>
+      <a href="/auth/logout">Logout</a>
+    <% } %>
+  </nav>
+  <h1>Welcome to the Homepage</h1>
+</body>
+</html>
