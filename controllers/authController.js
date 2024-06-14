@@ -9,7 +9,8 @@ const user_signup_post = async (req, res) => {
         await user.save();
         res.redirect('/auth/login');
     } catch(e) {
-        res.redirect('auth/signup');
+        req.flash('error_msg', 'Username already exists.')
+        res.redirect('/auth/signup');
     }
 };
 
@@ -33,7 +34,8 @@ const user_logout_get = (req, res) => {
         if(err) {
             return next(err);
         }
-        res.redirect('/auth/login');
+        req.flash('success_msg', 'You are logged out');
+        res.redirect('/');
     });
 };
 

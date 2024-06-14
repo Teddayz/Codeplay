@@ -35,8 +35,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
 app.use((req, res, next) => {
-    res.locals.user = req.user;
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
     next();
   });
 
@@ -46,6 +50,10 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.render('about', {title: 'About'});
+});
+
+app.get('/about_logged_out', (req, res) => {
+    res.render('about_logged_out', {title: 'About'});
 });
 
 //quiz routes
