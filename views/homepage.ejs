@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <title>Homepage</title>
 </head>
+<%- include('./partials/head.ejs') %>
 <body>
   <nav>
-    <a href="/">Home</a>
+    <img src="/Codeplay_logo.png" class="logo">
     <a href="/about_logged_out">About</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Sign Up</a>
-    <!-- <% if (user) { %>
+    <% if (user) { %>
       <a href="/auth/logout">Logout</a>
-    <% } %> -->
+    <% } %>
   </nav>
   <h1>Welcome to the Homepage</h1>
+  <p>This is still a work in progress please bear with us!</p>
+  <%- include('./partials/footer.ejs') %>
 </body>
 </html>

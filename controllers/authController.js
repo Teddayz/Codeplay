@@ -3,6 +3,12 @@ const passport = require('passport');
 const User = require('../models/User');
 
 const user_signup_post = async (req, res) => {
+    const { username, password, confirmpassword } = req.body;
+    if (password !== confirmpassword) {
+        req.flash('error_msg', 'Passwords do not match');
+        return res.redirect('/auth/signup');
+    }
+    
     try {
         const { username, password } = req.body;
         const user = new User({ username, password });

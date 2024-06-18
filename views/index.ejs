@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homepage</title>
+</head>
+<%- include('./partials/head.ejs') %>
+<body>
+  <nav>
+    <img src="/Codeplay_logo.png" class="logo">
+    <a href="/about">About us</a>
+    <a href="/quizzes">Quiz</a>
+    <% if (user) { %>
+      <a href="/auth/logout">Logout</a>
+    <% } %>
+  </nav>
+  <h1>Welcome to Codeplay!</h1>
+  <p>This is still a work in progress please bear with us!</p>
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

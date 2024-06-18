@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const initializePassport = require('./passport-config');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
+const authMiddleware = require('./middleware/authMiddleware');
 
 //express app
 const app = express();
@@ -44,20 +45,24 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get('/', (req, res) => {
+app.get('/', authMiddleware.forwardAuthenticated, (req, res) => {
     res.render('homepage', {title: 'Homepage'});
 });
 
-app.get('/about', (req, res) => {
+app.get('/index', authMiddleware.ensureAuthenticated, (req, res) => {
+    res.render('index', {title: 'Index'});
+})
+
+app.get('/about', authMiddleware.ensureAuthenticated, (req, res) => {
     res.render('about', {title: 'About'});
 });
 
-app.get('/about_logged_out', (req, res) => {
+app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => {
     res.render('about_logged_out', {title: 'About'});
 });
 
 //quiz routes
-app.use('/quizzes', quizRoutes);
+app.use('/quizzes', authMiddleware.ensureAuthenticated, quizRoutes);
 
 //auth routes
 app.use('/auth', authRoutes);

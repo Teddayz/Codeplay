@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <link rel="stylesheet" href="../public/styles.css">
 </head>
+<%- include('../partials/head.ejs') %>
 <body>
     <% if (success_msg) { %>
         <p style="color: green;"><%= success_msg %></p>
@@ -14,12 +16,20 @@
       <% if (error) { %>
         <p style="color: red;"><%= error %></p>
       <% } %>
-      
+
+      <nav>
+        <img src="/Codeplay_logo.png" class="logo">
+        <a href="/">Home</a>
+        <a href="/about_logged_out">About</a>
+        <!-- <a href="/auth/signup">Sign Up</a> -->
+      </nav>
+
   <form action="/auth/login" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
+    <p>Don't have an account? Sign up <a href="/auth/signup" class="hyperlink">here!</a></p>
     <button type="submit">Login</button>
   </form>
 </body>
