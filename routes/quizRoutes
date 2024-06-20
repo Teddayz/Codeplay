@@ -13,4 +13,6 @@ router.get('/:id', quizController.quiz_details);
 
 router.delete('/:id', quizController.quiz_delete);
 
+router.post('/complete/:id', quizController.completedQuiz);
+
 module.exports = router;

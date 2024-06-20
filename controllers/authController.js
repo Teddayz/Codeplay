@@ -1,6 +1,6 @@
 //user_signup_post, user_login_post, user_signup_get, user_login_get, user_logout_get
 const passport = require('passport');
-const User = require('../models/User');
+const User = require('../models/user');
 
 const user_signup_post = async (req, res) => {
     const { username, password, confirmpassword } = req.body;
@@ -22,7 +22,7 @@ const user_signup_post = async (req, res) => {
 
 //can change quizzes to homepage in the future
 const user_login_post = passport.authenticate('local', {
-    successRedirect: '/quizzes',
+    successRedirect: '/index',
     failureRedirect: '/auth/login',
     failureFlash: true
 });
@@ -51,4 +51,4 @@ module.exports = {
     user_login_get,
     user_login_post,
     user_logout_get
-}
+};

@@ -128,7 +128,7 @@ font-size: 1.2em;
 cursor: pointer;
 }
 
-body, html {
+.not-found.body, html {
     margin: 10px;
     padding: 10px;
     height: 95%;
@@ -151,4 +151,20 @@ body, html {
 
 .not-found.content img {
     display: none; /* Hide the inline image if you're using the background image */
+}
+.exp-bar {
+    width: 80%;
+    background-color: #ddd;
+    border-radius: 25px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.exp-bar-fill {
+    height: 30px;
+    background-color: #4caf50;
+    text-align: right;
+    padding-right: 10px;
+    color: white;
+    line-height: 30px; /* Vertically center text */
 }

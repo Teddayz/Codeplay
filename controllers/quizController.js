@@ -1,5 +1,6 @@
 //quiz_index, quiz_details, quiz_create_get, quiz_create_post, quiz_delete
 const Quiz = require('../models/quiz');
+const { updateUserExp } = require('../utils/exp');
 
 const quiz_index = (req, res) => {
     Quiz.find()
@@ -49,6 +50,25 @@ const quiz_delete = (req, res) => {
             console.log(err);
         })
     };
+
+const completedQuiz = async (req, res) => {
+    try {
+        const quizId = req.params.id;
+        const userId = req.user.id;
+        const quiz = await Quiz.findById(quizId);
+
+        if (!quiz) {
+            return res.status(404).json({ message: 'Quiz not found'});
+        }
+        const expGained = quiz.exp;
+        const { exp, level, levelUp } = await updateUserExp(userId, expGained);
+        res.json({message: 'Quiz completed successfully!',
+            redirect: '/quizzes'
+        });
+    } catch(err) {
+        res.status(500).json({ message: 'An quiz error has occured'});
+    }
+}
     
 
 module.exports = {
@@ -56,5 +76,6 @@ module.exports = {
     quiz_details,
     quiz_create_get,
     quiz_create_post,
-    quiz_delete
+    quiz_delete,
+    completedQuiz
 }

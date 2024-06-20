@@ -13,6 +13,11 @@ const quizSchema = new Schema({
     question: {
         type: String,
         required: true
+    },
+    exp: {
+        type: Number,
+        default: 20,
+        required: true
     }
  }, { timestamps: true });
 

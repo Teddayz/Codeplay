@@ -12,6 +12,15 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    //added exp and level for level bar 20th June
+    exp: {
+        type: Number,
+        default: 0
+    },
+    level: {
+        type: Number,
+        default: 1
     }
  });
 

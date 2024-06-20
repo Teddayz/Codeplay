@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const initializePassport = require('./passport-config');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes')
 const authMiddleware = require('./middleware/authMiddleware');
 
 //express app
@@ -63,6 +64,9 @@ app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => 
 
 //quiz routes
 app.use('/quizzes', authMiddleware.ensureAuthenticated, quizRoutes);
+
+//user routes
+app.use('/user', authMiddleware.ensureAuthenticated, userRoutes);
 
 //auth routes
 app.use('/auth', authRoutes);
