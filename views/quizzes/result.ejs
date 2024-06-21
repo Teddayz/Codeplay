@@ -1,0 +1,15 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="container">
+        <h1>Quiz Result</h1>
+        <h2><%= quiz.title %></h2>
+        <p>You scored <%= score %> out of <%= quiz.questions.length %>.</p>
+        <a href="/quizzes">Back to All Quizzes</a>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

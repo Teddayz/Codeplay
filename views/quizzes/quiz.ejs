@@ -1,0 +1,26 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="container">
+        <h1><%= quiz.title %></h1>
+        <form id="quizForm" action="/quizzes/submit/<%= quiz._id %>" method="POST">
+            <% quiz.questions.forEach((question, index) => { %>
+                <div class="question">
+                    <h3>Question <%= index + 1 %>: <%= question.question %></h3>
+                    <% question.options.forEach((option, optIndex) => { %>
+                        <div>
+                            <input type="radio" id="question<%= index %>option<%= optIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
+                            <label for="question<%= index %>option<%= optIndex %>"><%= option %></label>
+                        </div>
+                    <% }) %>
+                </div>
+            <% }) %>
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

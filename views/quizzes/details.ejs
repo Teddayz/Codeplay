@@ -1,32 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/head.ejs') %>
 <body>
 
     <%- include('../partials/nav.ejs') %>
 
-    <div class="details content">
-        <h2><%= quiz.title %></h2>
-        <div class="content">
-            <p><%= quiz.question %></p>
-        </div>
-        <a class="delete" data-doc="<%= quiz._id %>">
-            <img src="/trashcan.svg" alt="delete icon">
-        </a>
-    </div>
-    <%- include('../partials/footer.ejs') %>
-    
-    <script>
-        const trashcan = document.querySelector('a.delete');
-        trashcan.addEventListener('click', (e) => {
-            const endpoint = `/quizzes/${trashcan.dataset.doc}`;
+    <h1><%= quiz.title %></h1>
+    <form action="/quizzes/submit/<%= quiz._id %>" method="POST">
+        <% quiz.questions.forEach(function(question, index) { %>
+            <div class="question-block">
+                <h2>Question <%= index + 1 %>: <%= question.question %></h2>
+                <% question.options.forEach(function(option, optionIndex) { %>
+                    <div>
+                        <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
+                        <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
+                    </div>
+                <% }) %>
+            </div>
+        <% }) %>
+        <button type="submit">Submit Quiz</button>
+    </form>
 
-            fetch(endpoint, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => window.location.href = data.redirect)
-            .catch(err => console.log(err));
-        })
-    </script>
+    <%- include('../partials/footer.ejs') %>
+
 </body>
 </html>

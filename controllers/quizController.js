@@ -1,35 +1,42 @@
-//quiz_index, quiz_details, quiz_create_get, quiz_create_post, quiz_delete
+//quiz_index, quiz_details, quiz_create_get, quiz_create_post, quiz_delete, completedQuiz, quiz_attempt, quiz_submit
 const Quiz = require('../models/quiz');
+
 const { updateUserExp } = require('../utils/exp');
 
 const quiz_index = (req, res) => {
     Quiz.find()
     .then(result => {
-        res.render('quizzes/index', { title: 'All Quizzes', quizzes: result })
+        res.render('quizzes/index', { title: 'All Quizzes', quizzes: result });
     })
     .catch(err => {
         console.log(err);
-    })
-}
+    });
+};
 
 const quiz_details = (req, res) => {
     const id = req.params.id;
     Quiz.findById(id)
-    .then(result => {
-        res.render('quizzes/details', { quiz: result, title: 'Quiz Name' })
-    })
-    .catch(err => {
-        res.status(404).render('404', { title: 'Quiz not found' });
-    })
+        .then(result => {
+            res.render('quizzes/details', { quiz: result, title: 'Quiz Details' });
+        })
+        .catch(err => {
+            res.status(404).render('404', { title: 'Quiz not found' });
+        });
 };
 
 const quiz_create_get = (req, res) => {
-    res.render('quizzes/create_quiz', {title: 'Create Quiz'});
+    res.render('quizzes/create_quiz', { title: 'Create Quiz' });
 };
 
 const quiz_create_post = (req, res) => {
-    console.log(req.body);
-    const quiz = new Quiz(req.body);
+    const { title, author, questions, exp } = req.body;
+
+    const quiz = new Quiz({
+        title,
+        author,
+        questions,
+        exp: exp || 20 // Default value if not provided
+    });
 
     quiz.save()
     .then((result) => {
@@ -37,19 +44,20 @@ const quiz_create_post = (req, res) => {
     })
     .catch((err) => {
         console.log(err);
-    })
+        res.status(500).send('An error occurred while saving the quiz.');
+    });
 };
 
 const quiz_delete = (req, res) => {
     const id = req.params.id;
     Quiz.findByIdAndDelete(id)
         .then(result => {
-        res.json({ redirect: '/quizzes'})
+        res.json({ redirect: '/quizzes' });
         })
         .catch(err => {
             console.log(err);
-        })
-    };
+        });
+};
 
 const completedQuiz = async (req, res) => {
     try {
@@ -58,24 +66,60 @@ const completedQuiz = async (req, res) => {
         const quiz = await Quiz.findById(quizId);
 
         if (!quiz) {
-            return res.status(404).json({ message: 'Quiz not found'});
+            return res.status(404).json({ message: 'Quiz not found' });
         }
         const expGained = quiz.exp;
         const { exp, level, levelUp } = await updateUserExp(userId, expGained);
-        res.json({message: 'Quiz completed successfully!',
+        res.json({
+            message: 'Quiz completed successfully!',
             redirect: '/quizzes'
         });
-    } catch(err) {
-        res.status(500).json({ message: 'An quiz error has occured'});
+    } catch (err) {
+        res.status(500).json({ message: 'An error has occurred' });
     }
-}
-    
+};
+
+const quiz_attempt = (req, res) => {
+    const id = req.params.id;
+    Quiz.findById(id)
+    .then(result => {
+        res.render('quizzes/quiz', { quiz: result, title: 'Attempt Quiz' });
+    })
+    .catch(err => {
+        res.status(404).render('404', { title: 'Quiz not found' });
+    });
+};
+
+const quiz_submit = async (req, res) => {
+    const id = req.params.id;
+    const { answers } = req.body;
+
+    try {
+        const quiz = await Quiz.findById(id);
+        if (!quiz) {
+            return res.status(404).render('404', { title: 'Quiz not found' });
+        }
+
+        let score = 0;
+        quiz.questions.forEach((question, index) => {
+            if (question.correctAnswer === answers[index]) {
+                score++;
+            }
+        });
+
+        res.render('quizzes/result', { quiz, score, title: 'Quiz Result' });
+    } catch (err) {
+        res.status(500).send('An error occurred while submitting the quiz.');
+    }
+};
 
 module.exports = {
-    quiz_index, 
+    quiz_index,
     quiz_details,
     quiz_create_get,
     quiz_create_post,
     quiz_delete,
-    completedQuiz
-}
+    completedQuiz,
+    quiz_attempt,
+    quiz_submit
+};
