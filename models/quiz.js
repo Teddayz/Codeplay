@@ -28,7 +28,7 @@ const quizSchema = new Schema({
     questions: [questionSchema],
     exp: {
         type: Number,
-        default: 20
+        required: true
     },
 }, { timestamps: true });
 

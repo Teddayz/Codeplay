@@ -7,6 +7,13 @@
         <h1>Quiz Result</h1>
         <h2><%= quiz.title %></h2>
         <p>You scored <%= score %> out of <%= quiz.questions.length %>.</p>
+        <p>Experience Gained: <%= expGained %></p>
+        <p>Experience to next level: <%= expTable[level - 1] - exp %></p>
+        <p>Total Experience: <%= totalExp %></p>
+        <p>Level: <%= level %></p>
+        <% if (levelUp) { %>
+            <p>Congratulations! You leveled up!</p>
+        <% } %>
         <a href="/quizzes">Back to All Quizzes</a>
     </div>
 

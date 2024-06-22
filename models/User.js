@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
+    totalExp: {
+        type: Number,
+        default: 0
+    },
     level: {
         type: Number,
         default: 1

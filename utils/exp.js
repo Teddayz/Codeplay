@@ -9,17 +9,21 @@ const updateUserExp = async (userId, expGained) => {
             throw new Error('User not found');
         }
         user.exp += expGained;
+        user.totalExp += expGained;
 
         let levelUp = false;
-        while (user.level < expTable.length && user.level >= expTable[user.level - 1]) {
+        while (user.level < expTable.length && user.exp >= expTable[user.level - 1]) {
+            user.exp -= expTable[user.level - 1];
             user.level++;
             levelUp = true;
         }
         await user.save();
-        return { exp: user.exp, level: user.level, levelUp };
+        return { exp: user.exp, totalExp: user.totalExp, level: user.level, levelUp };
     } catch(err) {
         throw err;
     }
 }
 
-module.exports = updateUserExp;
+module.exports = {
+    updateUserExp
+}

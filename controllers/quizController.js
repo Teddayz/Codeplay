@@ -96,6 +96,7 @@ const quiz_submit = async (req, res) => {
 
     try {
         const quiz = await Quiz.findById(id);
+        const userId = req.user.id;
         if (!quiz) {
             return res.status(404).render('404', { title: 'Quiz not found' });
         }
@@ -106,9 +107,13 @@ const quiz_submit = async (req, res) => {
                 score++;
             }
         });
+        const expGained = (score / quiz.questions.length) * quiz.exp;
+        const { exp, totalExp, level, levelUp } = await updateUserExp(userId, expGained);
+        const expTable = [20, 50, 100, 300, 600, 1000];
 
-        res.render('quizzes/result', { quiz, score, title: 'Quiz Result' });
+        res.render('quizzes/result', { quiz, score, expGained, exp, level, levelUp, expTable, totalExp, title: 'Quiz Result' });
     } catch (err) {
+        console.error('Error submitting quiz:', err);
         res.status(500).send('An error occurred while submitting the quiz.');
     }
 };
