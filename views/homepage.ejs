@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Homepage</title>
 </head>
 <%- include('./partials/head.ejs') %>
 <body>
-  <nav>
-    <img src="/Codeplay_logo.png" class="logo">
-    <a href="/about_logged_out">About</a>
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Sign Up</a>
-    <% if (user) { %>
-      <a href="/auth/logout">Logout</a>
-    <% } %>
-  </nav>
-  <h1>Welcome to the Homepage</h1>
-  <p>This is still a work in progress please bear with us!</p>
+  <div class="homepage-content">
+    <nav>
+      <ul>
+        <li><a href="/about_logged_out">About us</a></li>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/signup">Sign Up</a></li>
+    </ul>
+    </nav>
+    <section class="banner">
+      <img src="/homepage_logo.png" alt="homepage logo">
+      <div class="welcome">
+        <h2>Welcome to Codeplay!</h2>
+      </div>
+    </section>
+    <p>This is still a work in progress please bear with us!</p>
+  </div>
   <%- include('./partials/footer.ejs') %>
 </body>
 </html>

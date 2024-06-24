@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 body{
 max-width: 1200px;
 margin: 20px auto;
 padding: 0 20px;
-font-family: 'Noto Serif', serif;
+font-family: Arial;
 max-width: 1200px;
 }
 p, h1, h2, h3, a, ul{
@@ -61,6 +60,9 @@ margin-left: 20px;
 
 .logo{
     width: 140px;
+    padding-top: 25px;
+    border: 4px solid rgb(19, 201, 207);
+    border-radius: 10%;
 }
 /* hyperlink styles*/
 .hyperlink{

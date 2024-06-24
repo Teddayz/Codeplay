@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    position: fixed;
+    background-color: rgb(16, 36, 212);
+    text-align: center;
+    /* padding: 20px; */
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+header h1{
+    color: white;
+    border: 8px solid white;
+    padding: 6px 12px;
+    display: inline-block;
+    border-radius: 36px;
+}
+.homepage-content {
+    font-family: arial;
+    margin-top: 100px;
+    white-space: nowrap;
+    text-align: center;
+    background-color: yellowgreen;
+}
+.homepage-content nav{
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: inline-block;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+.homepage-content nav ul{
+    white-space: nowrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+.homepage-content nav li{
+    width: 33%;
+    display: inline-block;
+    font-size: 24px;
+}
+.homepage-content nav li a{
+    text-decoration: none;
+    color: #4b4b4b;
+}
+.homepage-content img{
+    padding-top: 40px;
+}
+.banner{
+    position: relative;
+}
+.banner img{
+    max-width: 100%;
+}
+.banner .welcome{
+    background-color: aqua;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    top: 10%;
+    border-radius: 36px;
+}
+.homepage-content p{
+    font-family: arial;
+    font-size: 40px;
+    background-color: beige;
+    text-align: center;
+}
+.logo{
+    width: 140px;
+    background-color: #e9e9e9;
+    /* border: 4px solid rgb(19, 201, 207);
+    border-radius: 10%; */
+    z-index: 2;
+}
+footer{
+    color: #777;
+    text-align: center;
+    margin: 80px auto 20px;
+}
