@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codeplay</title>
+    <link rel="stylesheet" href="/merv.css">
 </head>
-<%- include('./partials/head.ejs') %>
-<body>
-  <div class="homepage-content">
-    <nav>
-      <ul>
-        <li><a href="/about_logged_out">About us</a></li>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/signup">Sign Up</a></li>
-    </ul>
-    </nav>
+<body class="homepage-content">
+  <%- include('./partials/nav_logged_out.ejs') %>
     <section class="banner">
       <img src="/homepage_logo.png" alt="homepage logo">
       <div class="welcome">
         <h2>Welcome to Codeplay!</h2>
       </div>
     </section>
+    <p>Learn how to code! A step at a time!</p>
+    <br><br>
     <p>This is still a work in progress please bear with us!</p>
-  </div>
   <%- include('./partials/footer.ejs') %>
 </body>
 </html>
