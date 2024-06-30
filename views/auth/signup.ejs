@@ -2,40 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/swei.css">
   <title>Sign Up</title>
-  <link rel="stylesheet" href="/merv.css">
 </head>
-<body class="signup-content">
+<body>
+    <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
 
-  <div>
-    <nav class="navbar">
-      <div class="navbar-brand">
-          <a href="/"><img src="/Codeplay_logo.png" alt="codeplay logo" class="logo"></a>
-      </div>
-      <ul class="navbar-links">
-        <li><a href="/about_logged_out">About us</a></li>
-        <li><a href="/auth/login" class="btn login">Login</a></li>
-      </ul>
-    </nav>
-  <br><br><br>
-    <div class="form-container">     
-      <form action="/auth/signup" method="post">
+    <div class="signin">
+      <div class="content">
         <h2>Sign Up</h2>
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-          <br><br>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-          <br><br>
-          <label for="password">Confirm Password:</label>
-          <input type="password" id="confirmpassword" name="confirmpassword" required>
-          <br><br>
-          <button type="submit" class="btn">Sign Up</button>
+        <div class="form">
+          <form action="/auth/signup" method="post">
+            <div class="inputBox">
+              <input type="text" id="username" name="username" required>
+              <label for="username">Username</label>
+            </div>
+            <div class="inputBox">
+              <input type="password" id="password" name="password" required>
+              <label for="password">Password</label>
+            </div>
+            <div class="inputBox">
+              <input type="password" id="confirmpassword" name="confirmpassword" required>
+              <label for="confirmpassword">Confirm Password</label>
+            </div>
+            <div class="inputBox">
+              <input type="submit" value="Sign Up">
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
+  </section>
+
   <% if (success_msg) { %>
     <p style="color: green;"><%= success_msg %></p>
   <% } %>

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const path = require('path');
 const initializePassport = require('./passport-config');
 const quizRoutes = require('./routes/quizRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -17,13 +18,15 @@ initializePassport(passport);
 // Connect to MongoDB Atlas
 const dbURI = 'mongodb+srv://Codeplayadmin:Codeplayadmin@codeplay.yquzy4x.mongodb.net/Codeplay?retryWrites=true&w=majority&appName=Codeplay';
 mongoose.connect(dbURI)
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(3000, () => console.log('Server is running on port 3000')))
     .catch((err) => console.log(err));
 
 // Register view engine
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static('public'));
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
@@ -45,7 +48,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Home route
+// Routes
 app.get('/', authMiddleware.forwardAuthenticated, (req, res) => {
     res.render('homepage', {title: 'Homepage'});
 });
@@ -60,6 +63,14 @@ app.get('/about', authMiddleware.ensureAuthenticated, (req, res) => {
 
 app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => {
     res.render('about_logged_out', {title: 'About'});
+});
+
+// Profile route
+app.get('/views/profile', authMiddleware.ensureAuthenticated, (req, res) => {
+    res.render('profile', {
+        user: req.user,
+        expTable: [100, 200, 300, 400, 500] // Example experience table
+    });
 });
 
 // Quiz routes

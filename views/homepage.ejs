@@ -1,22 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codeplay</title>
-    <link rel="stylesheet" href="/merv.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/swei.css">
+  <title>Codeplay</title>
 </head>
-<body class="homepage-content">
-  <%- include('./partials/nav_logged_out.ejs') %>
-    <section class="banner">
-      <img src="/homepage_logo.png" alt="homepage logo">
-      <div class="welcome">
-        <h2>Welcome to Codeplay!</h2>
+<body>
+
+  <section>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span>
+
+    <div class="signin">
+      <div class="content">
+        <h2>CODEPLAY</h2>
+        <a href="/"><img src="/logoman.png" alt="Codeplay logo" class="logo"></a>
+
+        <div class="form">
+          <form action="/auth/login" method="post">
+            <div class="inputBox">
+              <input type="text" id="username" name="username" required>
+              <i>Username</i>
+            </div>
+            <div class="inputBox">
+              <input type="password" id="password" name="password" required>
+              <i>Password</i>
+            </div>
+            <div class="links">
+              <a href="#">Forgot Password</a>
+              <a href="/auth/signup">Sign Up</a>
+            </div>
+            <div class="inputBox">
+              <input type="submit" value="Login">
+            </div>
+          </form>
+        </div>
       </div>
-    </section>
-    <p>Learn how to code! A step at a time!</p>
-    <br><br>
-    <p>This is still a work in progress please bear with us!</p>
-  <%- include('./partials/footer.ejs') %>
+    </div>
+  </section>
+
+  <% if (success_msg) { %>
+    <p class="message success"><%= success_msg %></p>
+  <% } %>
+  <% if (error_msg) { %>
+    <p class="message error"><%= error_msg %></p>
+  <% } %>
+  <% if (error) { %>
+    <p class="message error"><%= error %></p>
+  <% } %>
+
+  <footer>
+  </footer>
 </body>
 </html>

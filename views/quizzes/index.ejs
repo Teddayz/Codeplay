@@ -1,24 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head.ejs') %>
+<head>
+  <%- include('../partials/head.ejs') %>
+  <link rel="stylesheet" href="/swei.css">
+  <title>All Quizzes</title>
+</head>
 <body>
+  <%- include('../partials/nav.ejs') %>
 
-    <%- include('../partials/nav.ejs') %>
-
-    <div class="quiz content">
-        <h2>All Quizzes</h2>
-        
-        <% if (quizzes.length > 0) { %>
-            <% quizzes.forEach(quiz => { %>
-              <a class="single" href="/quizzes/<%= quiz._id %>">
-              <h3 class="title"><%= quiz.title %></h3>
-              <p class="author"><%= quiz.snippet %></p>
-              </a>
-            <% }) %>
-          <% } else { %>
-            <p>There are no quizzes to display...</p>
-          <% } %>
-    </div>
-    <%- include('../partials/footer.ejs') %>
+  <div class="content quiz">
+    <h2>All Quizzes</h2>
     
+    <% if (quizzes.length > 0) { %>
+      <% quizzes.forEach(quiz => { %>
+        <a class="single" href="/quizzes/<%= quiz._id %>">
+          <h3 class="title"><%= quiz.title %></h3>
+          <p class="author"><%= quiz.snippet %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no quizzes to display...</p>
+    <% } %>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
 </body>
 </html>

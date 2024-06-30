@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile Page</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/swei.css">
 </head>
-<%- include('./partials/head.ejs') %>
 <body>
-  <nav>
-    <img src="/Codeplay_logo.png" class="logo">
-    <a href="/about">About us</a>
-    <a href="/quizzes">Quiz</a>
-    <!-- <% if (user) { %>
-      <a href="/auth/logout">Logout</a>
-    <% } %> -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="/index">
+        <div class="site-title">
+          <h1>Learn how to code!</h1>
+          <p>Learn with your friends!</p>
+        </div>
+      </a>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="/views/profile">Profile</a></li>
+      <li><a href="/quizzes">Quiz</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/quizzes/create">Create Quiz</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
   </nav>
-  <div class="profile">
+
+  <div class="content profile">
     <h1>Welcome, <%= user.username %></h1>
     <div class="exp-bar">
       <div class="exp-bar-fill" style="width: <%= (user.exp / expTable[user.level - 1]) * 100 %>%;"></div>
@@ -24,6 +33,7 @@
     <p>EXP: <%= user.exp %> / <%= expTable[user.level - 1] %></p>
     <p>Total Exp: <%= user.totalExp %></p>
   </div>
+
   <%- include('./partials/footer.ejs') %>
 </body>
 </html>

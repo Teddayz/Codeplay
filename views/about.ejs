@@ -1,12 +1,18 @@
+<!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
+<head>
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/swei.css">
+  <title>About Us</title>
+</head>
 <body>
+  <%- include('./partials/nav.ejs') %>
 
-    <%- include('./partials/nav.ejs') %>
-    <div class="about content">
-        <h2>About us</h2>
-        <p>Inspired by Duolingo, we have created this website to allow you guys to learn an important skill! Coding!</p>
-    </div>
-    <%- include('./partials/footer.ejs') %>
+  <div class="content about">
+    <h2>About Us</h2>
+    <p>Inspired by Duolingo, we have created this website to allow you guys to learn an important skill! Coding!</p>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
 </body>
 </html>

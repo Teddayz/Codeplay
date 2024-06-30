@@ -2,21 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/swei.css">
   <title>Homepage</title>
 </head>
-<%- include('./partials/head.ejs') %>
 <body>
-  <nav>
-    <img src="/Codeplay_logo.png" class="logo">
-    <a href="/about">About us</a>
-    <a href="/quizzes">Quiz</a>
-    <a href="/user">Profile</a>
-    <!-- <% if (user) { %>
-      <a href="/auth/logout">Logout</a>
-    <% } %> -->
-  </nav>
-  <h1>Welcome to Codeplay!</h1>
-  <p>This is still a work in progress please bear with us!</p>
+  <%- include('./partials/nav.ejs') %>
+  
+  <div class="content">
+    <img src="/logoman.png" alt="codeplay logo" class="logo">
+    <h1>Welcome to Codeplay!</h1>
+    <p>This is still a work in progress please bear with us!</p>
+  </div>
+  
   <%- include('./partials/footer.ejs') %>
 </body>
 </html>

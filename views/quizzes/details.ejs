@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head.ejs') %>
+<head>
+  <link rel="stylesheet" href="/swei.css">
+  <title><%= quiz.title %></title>
+</head>
 <body>
+  <%- include('../partials/nav.ejs') %>
 
-    <%- include('../partials/nav.ejs') %>
-
-    <h1><%= quiz.title %></h1>
+  <div class="content container">
+    <h1 class="quiz-title"><%= quiz.title %></h1>
     <form action="/quizzes/submit/<%= quiz._id %>" method="POST">
-        <% quiz.questions.forEach(function(question, index) { %>
-            <div class="question-block">
-                <h2>Question <%= index + 1 %>: <%= question.question %></h2>
-                <% question.options.forEach(function(option, optionIndex) { %>
-                    <div>
-                        <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
-                        <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
-                    </div>
-                <% }) %>
+      <% quiz.questions.forEach(function(question, index) { %>
+        <div class="question-block">
+          <h2 class="question-title">Question <%= index + 1 %>: <%= question.question %></h2>
+          <% question.options.forEach(function(option, optionIndex) { %>
+            <div class="option">
+              <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
+              <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
             </div>
-        <% }) %>
-        <button type="submit">Submit Quiz</button>
+          <% }) %>
+        </div>
+      <% }) %>
+      <button type="submit" class="btn submit">Submit Quiz</button>
     </form>
+  </div>
 
-    <%- include('../partials/footer.ejs') %>
-
+  <%- include('../partials/footer.ejs') %>
 </body>
 </html>
