@@ -7,7 +7,6 @@
   <title>Codeplay</title>
 </head>
 <body>
-
   <section>
     <span></span> <span></span> <span></span> <span></span> <span></span>
     <span></span> <span></span> <span></span> <span></span> <span></span>
@@ -41,12 +40,18 @@
     <span></span> <span></span> <span></span> <span></span> <span></span>
     <span></span> <span></span> <span></span> <span></span> <span></span>
     <span></span> <span></span> <span></span> <span></span> <span></span>
-
+    
     <div class="signin">
       <div class="content">
-        <h2>CODEPLAY</h2>
-        <a href="/"><img src="/logoman.png" alt="Codeplay logo" class="logo"></a>
-
+        <h2></h2>
+        <a href="/"><img src="/logoman(1).jpg" alt="Codeplay logo" class="logo"></a>
+        
+        <% if (errorMessage) { %>
+          <div class="error-message">
+            <p><%= errorMessage %></p>
+          </div>
+        <% } %>
+        
         <div class="form">
           <form action="/auth/login" method="post">
             <div class="inputBox">
@@ -69,16 +74,6 @@
       </div>
     </div>
   </section>
-
-  <% if (success_msg) { %>
-    <p class="message success"><%= success_msg %></p>
-  <% } %>
-  <% if (error_msg) { %>
-    <p class="message error"><%= error_msg %></p>
-  <% } %>
-  <% if (error) { %>
-    <p class="message error"><%= error %></p>
-  <% } %>
 
   <footer>
   </footer>

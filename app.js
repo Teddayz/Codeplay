@@ -28,6 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Add this line to parse JSON bodies
 app.use(morgan('dev'));
 
 app.use(session({
@@ -50,19 +51,19 @@ app.use((req, res, next) => {
 
 // Routes
 app.get('/', authMiddleware.forwardAuthenticated, (req, res) => {
-    res.render('homepage', {title: 'Homepage'});
+    res.render('homepage', { title: 'Homepage', errorMessage: req.flash('error') });
 });
 
 app.get('/index', authMiddleware.ensureAuthenticated, (req, res) => {
-    res.render('index', {title: 'Index'});
+    res.render('index', { title: 'Index' });
 });
 
 app.get('/about', authMiddleware.ensureAuthenticated, (req, res) => {
-    res.render('about', {title: 'About'});
+    res.render('about', { title: 'About' });
 });
 
 app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => {
-    res.render('about_logged_out', {title: 'About'});
+    res.render('about_logged_out', { title: 'About' });
 });
 
 // Profile route
@@ -80,9 +81,9 @@ app.use('/quizzes', authMiddleware.ensureAuthenticated, quizRoutes);
 app.use('/user', authMiddleware.ensureAuthenticated, userRoutes);
 
 // Auth routes
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes); // Ensure this line is present
 
 // 404 page
 app.use((req, res) => {
-    res.status(404).render('404', {title: '404'});
+    res.status(404).render('404', { title: '404' });
 });
