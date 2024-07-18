@@ -4,7 +4,7 @@ const expTable = [20, 50, 100, 300, 600, 1000];
 
 const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id).populate('friends', 'username exp totalExp level');
         if (!user) {
             return res.status(404).send('User not found');
         }
@@ -26,12 +26,14 @@ const sendFriendRequest = async (req, res) => {
   
       if (!friend) {
         const error_msg = 'User not found';
+        console.log(error_msg);
         return res.render('profile', { user: currentUser, error_msg, expTable });
       }
   
       // Check if the friend request has already been sent or if the user is already a friend
-      if (currentUser.friendRequests.includes(friend._id) || currentUser.friends.includes(friend._id)) {
+      if (friend.friendRequests.includes(currentUser._id) || currentUser.friends.includes(friend._id)) {
         const error_msg = 'Friend request already sent or user is already a friend';
+        console.log(error_msg);
         return res.render('profile', { user: currentUser, error_msg, expTable});
       }
   
@@ -52,10 +54,10 @@ const sendFriendRequest = async (req, res) => {
   
   const acceptFriendRequest = async (req, res) => {
     try {
-      const friendId = req.params._id;
+      const friendId = req.params.id;
   
       // Find the current user
-      const currentUser = await User.findById(req.user._id);
+      const currentUser = await User.findById(req.user.id);
   
       // Find the friend by id
       const friend = await User.findById(friendId);
@@ -89,9 +91,9 @@ const sendFriendRequest = async (req, res) => {
   
   const rejectFriendRequest = async (req, res) => {
     try {
-        const friendId = req.params._id;
+        const friendId = req.params.id;
       // Find the current user
-      const currentUser = await User.findById(req.user._id);
+      const currentUser = await User.findById(req.user.id);
   
       // Find the friend by id
       const friend = await User.findById(friendId);
