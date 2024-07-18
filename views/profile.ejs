@@ -38,7 +38,7 @@
     <h2>Friends</h2>
     <ul>
       <% user.friends.forEach(friend => { %>
-        <li><%= friend.username %></li>
+        <li><%= friend.username %>, Level: <%= friend.level %></li>
       <% }) %>
     </ul>
 
