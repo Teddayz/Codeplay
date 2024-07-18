@@ -5,5 +5,11 @@ const router = express.Router();
 
 router.get('/', userController.getProfile);
 
+router.post('/send-friend-request/', userController.sendFriendRequest);
+
+router.post('/accept-friend-request/:id', userController.acceptFriendRequest);
+
+router.post('/reject-friend-request/:id', userController.rejectFriendRequest);
+
 module.exports = router
  

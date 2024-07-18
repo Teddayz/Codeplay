@@ -16,7 +16,7 @@
       </a>
     </div>
     <ul class="navbar-links">
-      <li><a href="/views/profile">Profile</a></li>
+      <li><a href="/profile">Profile</a></li>
       <li><a href="/quizzes">Quiz</a></li>
       <li><a href="/about">About</a></li>
       <li><a href="/quizzes/create">Create Quiz</a></li>
@@ -32,6 +32,41 @@
     <p>Level: <%= user.level %></p>
     <p>EXP: <%= user.exp %> / <%= expTable[user.level - 1] %></p>
     <p>Total Exp: <%= user.totalExp %></p>
+  </div>
+  
+  <div>
+    <h2>Friends</h2>
+    <ul>
+      <% user.friends.forEach(friend => { %>
+        <li><%= friend.username %></li>
+      <% }) %>
+    </ul>
+
+    <h2>Friend Requests</h2>
+  <ul>
+    <% user.friendRequests.forEach(request => { %>
+      <li>
+        <%= request %>
+        <form action="/profile/accept-friend-request/<%= request._id %>" method="POST" style="display:inline;">
+          <button type="submit">Accept</button>
+        </form>
+        <form action="/profile/reject-friend-request/<%= request._id %>" method="POST" style="display:inline;">
+          <button type="submit">Reject</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <!-- Form to send friend request -->
+  <div>
+    <h2>Send Friend Request</h2>
+    <form action="/profile/send-friend-request" method="POST">
+      <label for="friendUsername">Friend's Username:</label>
+      <input type="text" id="friendUsername" name="friendUsername" required>
+      <button type="submit">Send Request</button>
+    </form>
+  </div>
+
   </div>
 
   <%- include('./partials/footer.ejs') %>

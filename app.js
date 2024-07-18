@@ -66,19 +66,12 @@ app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => 
     res.render('about_logged_out', { title: 'About' });
 });
 
-// Profile route
-app.get('/views/profile', authMiddleware.ensureAuthenticated, (req, res) => {
-    res.render('profile', {
-        user: req.user,
-        expTable: [100, 200, 300, 400, 500] // Example experience table
-    });
-});
 
 // Quiz routes
 app.use('/quizzes', authMiddleware.ensureAuthenticated, quizRoutes);
 
 // User routes
-app.use('/user', authMiddleware.ensureAuthenticated, userRoutes);
+app.use('/profile', authMiddleware.ensureAuthenticated, userRoutes);
 
 // Auth routes
 app.use('/auth', authRoutes); // Ensure this line is present

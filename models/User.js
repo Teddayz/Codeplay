@@ -25,7 +25,16 @@ const userSchema = new Schema({
     level: {
         type: Number,
         default: 1
-    }
+    },
+    friends: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    friendRequests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+
  });
 
  userSchema.pre('save', async function(next) {
