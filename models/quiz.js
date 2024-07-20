@@ -30,6 +30,11 @@ const quizSchema = new Schema({
         type: Number,
         required: true
     },
+    language: {
+        type: String,
+        required: true,
+        enum: ['Java', 'Python', 'JavaScript']
+    }
 }, { timestamps: true });
 
 const Quiz = mongoose.model('Quiz', quizSchema);
