@@ -199,7 +199,7 @@ section span:hover {
   position: relative;
   width: 100%;
   background: #333;
-  border: none;
+  border: 1px solid #555; /* Border added */
   outline: none;
   padding: 25px 10px 7.5px;
   border-radius: 4px;
@@ -390,4 +390,267 @@ footer {
     width: calc(20vw - 2px);
     height: calc(20vw - 2px);
   }
+}
+
+/* Additional styles for the create quiz form */
+.create-quiz-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.create-quiz-container h2 {
+  text-align: center;
+  color: #0f0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #555; /* Border added */
+  background: #333;
+  color: #fff;
+  font-size: 1em;
+  width: 100%;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  background: #0f0;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.form-actions button:hover {
+  background: #0b0;
+}
+
+/* Create quiz */
+.create-quiz.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.create-quiz h1 {
+  text-align: center;
+  color: #0f0;
+  margin-bottom: 20px;
+}
+
+.create-quiz .inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.create-quiz .inputBox label {
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.create-quiz .inputBox input,
+.create-quiz .inputBox textarea,
+.create-quiz .inputBox select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #333;
+  color: #fff;
+  font-size: 1em;
+  width: 100%;
+}
+
+.create-quiz .inputBox textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-quiz .form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.create-quiz .form-actions button {
+  background: #0f0;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.create-quiz .form-actions button:hover {
+  background: #0b0;
+}
+
+.create-quiz .question {
+  margin-top: 20px;
+  padding: 20px;
+  background: #333;
+  border-radius: 8px;
+}
+
+.create-quiz .question .inputBox {
+  margin-bottom: 10px;
+}
+
+.create-quiz .question .inputBox.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #444;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.create-quiz .question .inputBox.option input[type="radio"] {
+  display: none;
+}
+
+.create-quiz .question .inputBox.option label {
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.create-quiz .question .inputBox.option:hover {
+  background: #555;
+  border-radius: 4px;
+}
+
+.create-quiz .question .inputBox.option input[type="radio"]:checked + label {
+  background: #0f0;
+  color: #000;
+  border-color: #0f0;
+  border-radius: 4px;
+}
+
+/* Quiz */
+.quiz-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-container h1 {
+  text-align: center;
+  color: #0f0;
+  margin-bottom: 20px;
+}
+
+.question-block {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #333;
+  border-radius: 8px;
+}
+
+.question-title {
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #444;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.inputBox.option input[type="radio"] {
+  display: none;
+}
+
+.inputBox.option label {
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.inputBox.option:hover {
+  background: #555;
+}
+
+.inputBox.option input[type="radio"]:checked + label {
+  background: #0f0;
+  color: #000;
+  border-color: #0f0;
+  border-radius: 4px;
+
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-actions .btn.submit {
+  background: #0f0;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.form-actions .btn.submit:hover {
+  background: #0b0;
 }

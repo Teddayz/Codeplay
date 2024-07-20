@@ -7,21 +7,27 @@
 <body>
   <%- include('../partials/nav.ejs') %>
 
-  <div class="content container">
+  <div class="content quiz-container">
     <h1 class="quiz-title"><%= quiz.title %></h1>
     <form action="/quizzes/submit/<%= quiz._id %>" method="POST">
       <% quiz.questions.forEach(function(question, index) { %>
         <div class="question-block">
-          <h2 class="question-title">Question <%= index + 1 %>: <%= question.question %></h2>
-          <% question.options.forEach(function(option, optionIndex) { %>
-            <div class="option">
-              <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
-              <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
-            </div>
-          <% }) %>
+          <div class="inputBox">
+            <h2 class="question-title">Question <%= index + 1 %>: <%= question.question %></h2>
+          </div>
+          <div class="options">
+            <% question.options.forEach(function(option, optionIndex) { %>
+              <div class="inputBox option">
+                <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" required>
+                <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
+              </div>
+            <% }) %>
+          </div>
         </div>
       <% }) %>
-      <button type="submit" class="btn submit">Submit Quiz</button>
+      <div class="form-actions">
+        <button type="submit" class="btn submit">Submit Quiz</button>
+      </div>
     </form>
   </div>
 

@@ -22,7 +22,6 @@
           <option value="Java">Java</option>
           <option value="Python">Python</option>
           <option value="JavaScript">JavaScript</option>
-
         </select>
       </div>
       
@@ -45,25 +44,21 @@
             <label for="question1">Question 1:</label>
             <input type="text" id="question1" name="questions[0][question]" required>
           </div>
-          <div class="inputBox">
-            <label for="option1_1">Option 1:</label>
-            <input type="text" id="option1_1" name="questions[0][options][]" required>
+          <div class="inputBox option">
+            <input type="radio" id="q0o0" name="questions[0][correctAnswer]" value="0" required>
+            <label for="q0o0">Option 1: <input type="text" name="questions[0][options][]" required></label>
           </div>
-          <div class="inputBox">
-            <label for="option1_2">Option 2:</label>
-            <input type="text" id="option1_2" name="questions[0][options][]" required>
+          <div class="inputBox option">
+            <input type="radio" id="q0o1" name="questions[0][correctAnswer]" value="1">
+            <label for="q0o1">Option 2: <input type="text" name="questions[0][options][]" required></label>
           </div>
-          <div class="inputBox">
-            <label for="option1_3">Option 3:</label>
-            <input type="text" id="option1_3" name="questions[0][options][]" required>
+          <div class="inputBox option">
+            <input type="radio" id="q0o2" name="questions[0][correctAnswer]" value="2">
+            <label for="q0o2">Option 3: <input type="text" name="questions[0][options][]" required></label>
           </div>
-          <div class="inputBox">
-            <label for="option1_4">Option 4:</label>
-            <input type="text" id="option1_4" name="questions[0][options][]" required>
-          </div>
-          <div class="inputBox">
-            <label for="correctAnswer1">Correct Answer:</label>
-            <input type="text" id="correctAnswer1" name="questions[0][correctAnswer]" required>
+          <div class="inputBox option">
+            <input type="radio" id="q0o3" name="questions[0][correctAnswer]" value="3">
+            <label for="q0o3">Option 4: <input type="text" name="questions[0][options][]" required></label>
           </div>
         </div>
       </div>
@@ -90,25 +85,21 @@
           <label for="question${questionCount}">Question ${questionCount}:</label>
           <input type="text" id="question${questionCount}" name="questions[${questionCount - 1}][question]" required>
         </div>
-        <div class="inputBox">
-          <label for="option${questionCount}_1">Option 1:</label>
-          <input type="text" id="option${questionCount}_1" name="questions[${questionCount - 1}][options][]" required>
+        <div class="inputBox option">
+          <input type="radio" id="q${questionCount - 1}o0" name="questions[${questionCount - 1}][correctAnswer]" value="0" required>
+          <label for="q${questionCount - 1}o0">Option 1: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
         </div>
-        <div class="inputBox">
-          <label for="option${questionCount}_2">Option 2:</label>
-          <input type="text" id="option${questionCount}_2" name="questions[${questionCount - 1}][options][]" required>
+        <div class="inputBox option">
+          <input type="radio" id="q${questionCount - 1}o1" name="questions[${questionCount - 1}][correctAnswer]" value="1">
+          <label for="q${questionCount - 1}o1">Option 2: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
         </div>
-        <div class="inputBox">
-          <label for="option${questionCount}_3">Option 3:</label>
-          <input type="text" id="option${questionCount}_3" name="questions[${questionCount - 1}][options][]" required>
+        <div class="inputBox option">
+          <input type="radio" id="q${questionCount - 1}o2" name="questions[${questionCount - 1}][correctAnswer]" value="2">
+          <label for="q${questionCount - 1}o2">Option 3: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
         </div>
-        <div class="inputBox">
-          <label for="option${questionCount}_4">Option 4:</label>
-          <input type="text" id="option${questionCount}_4" name="questions[${questionCount - 1}][options][]" required>
-        </div>
-        <div class="inputBox">
-          <label for="correctAnswer${questionCount}">Correct Answer:</label>
-          <input type="text" id="correctAnswer${questionCount}" name="questions[${questionCount - 1}][correctAnswer]" required>
+        <div class="inputBox option">
+          <input type="radio" id="q${questionCount - 1}o3" name="questions[${questionCount - 1}][correctAnswer]" value="3">
+          <label for="q${questionCount - 1}o3">Option 4: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
         </div>
       `;
 
