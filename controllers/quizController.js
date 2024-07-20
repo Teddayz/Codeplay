@@ -6,14 +6,14 @@ const { updateUserExp } = require('../utils/exp');
 const quiz_index = (req, res) => {
     const language = req.query.language;
 
-    const query = language ? {language} : {};
+    const query = language ? { language } : {};
 
-    Quiz.find()
+    Quiz.find(query)
     .then(result => {
-        res.render('quizzes/index', { title: 'All Quizzes', quizzes: result, selectedLanguage: language});
+      res.render('quizzes/index', { title: 'All Quizzes', quizzes: result, selectedLanguage: language });
     })
     .catch(err => {
-        console.log(err);
+      console.log(err);
     });
 };
 
@@ -33,7 +33,7 @@ const quiz_create_get = (req, res) => {
 };
 
 const quiz_create_post = (req, res) => {
-    const { title, author, questions, exp, language} = req.body;
+    const { title, author, questions, exp, language } = req.body;
 
     const quiz = new Quiz({
         title,

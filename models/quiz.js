@@ -30,6 +30,10 @@ const quizSchema = new Schema({
         type: Number,
         required: true
     },
+    language: {
+        type: String,
+        require: true
+    }
 }, { timestamps: true });
 
 const Quiz = mongoose.model('Quiz', quizSchema);

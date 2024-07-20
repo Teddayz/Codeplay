@@ -10,6 +10,16 @@
 
   <div class="content quiz">
     <h2>All Quizzes</h2>
+
+    <form action="/quizzes" method="GET">
+      <label for="language">Filter:</label>
+      <select id="language" name="language" onchange="this.form.submit()">
+        <option value="" <% if (!selectedLanguage) { %>selected<% } %>>All</option>
+        <option value="Java" <% if (selectedLanguage === 'Java') { %>selected<% } %>>Java</option>
+        <option value="Python" <% if (selectedLanguage === 'Python') { %>selected<% } %>>Python</option>
+        <option value="JavaScript" <% if (selectedLanguage === 'JavaScript') { %>selected<% } %>>JavaScript</option>
+      </select>
+    </form>
     
     <% if (quizzes.length > 0) { %>
       <% quizzes.forEach(quiz => { %>
