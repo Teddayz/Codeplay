@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -11,6 +12,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const authMiddleware = require('./middleware/authMiddleware');
 
+dotenv.config();
 // Express app
 const app = express();
 initializePassport(passport);
@@ -61,11 +63,6 @@ app.get('/index', authMiddleware.ensureAuthenticated, (req, res) => {
 app.get('/about', authMiddleware.ensureAuthenticated, (req, res) => {
     res.render('about', { title: 'About' });
 });
-
-app.get('/about_logged_out', authMiddleware.forwardAuthenticated, (req, res) => {
-    res.render('about_logged_out', { title: 'About' });
-});
-
 
 // Quiz routes
 app.use('/quizzes', authMiddleware.ensureAuthenticated, quizRoutes);

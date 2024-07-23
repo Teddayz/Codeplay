@@ -42,11 +42,10 @@
       <% }) %>
     </ul>
 
-    <h2>Friend Requests</h2>
+  <h2>Friend Requests</h2>
   <ul>
     <% user.friendRequests.forEach(request => { %>
-      <li>
-        <%= request %>
+      <li> <%= request.username %>
         <form action="/profile/accept-friend-request/<%= request._id %>" method="POST" style="display:inline;">
           <button type="submit">Accept</button>
         </form>

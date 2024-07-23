@@ -4,7 +4,7 @@ const expTable = [20, 50, 100, 300, 600, 1000];
 
 const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id).populate('friends', 'username exp totalExp level');
+        const user = await User.findById(req.user._id).populate('friends', 'username exp totalExp level').populate('friendRequests', 'username exp totalExp level');
         if (!user) {
             return res.status(404).send('User not found');
         }
