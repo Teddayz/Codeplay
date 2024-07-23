@@ -59,7 +59,7 @@
   <!-- Form to send friend request -->
   <div>
     <h2>Send Friend Request</h2>
-    <form action="/profile/send-friend-request" method="POST">
+    <form id="friend-request-form" action="/profile/send-friend-request" method="POST">
       <label for="friendUsername">Friend's Username:</label>
       <input type="text" id="friendUsername" name="friendUsername" required>
       <button type="submit">Send Request</button>
@@ -86,6 +86,7 @@
         }
       });
     });
+  
   </script>
 
   <%- include('./partials/footer.ejs') %>

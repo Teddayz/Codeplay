@@ -4,7 +4,7 @@ const expTable = [20, 50, 100, 300, 600, 1000];
 
 const getProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id).populate('friends', 'username exp totalExp level').populate('friendRequests', 'username exp totalExp level');
+        const user = await User.findById(req.user._id).populate('friends friendRequests');
         if (!user) {
             return res.status(404).send('User not found');
         }
@@ -20,6 +20,12 @@ const sendFriendRequest = async (req, res) => {
   
       // Find the current user
       const currentUser = await User.findById(req.user._id);
+
+      if (currentUser.username === friendUsername) {
+        const error_msg = 'You cannot send a friend request to yourself';
+        console.log(error_msg);
+        return res.render('index', { user: currentUser, error_msg, expTable });
+      }
   
       // Find the friend by username
       const friend = await User.findOne({ username: friendUsername });
@@ -43,7 +49,7 @@ const sendFriendRequest = async (req, res) => {
   
       const success_msg = 'Friend request sent';
       console.log(success_msg);
-      res.render('profile', { user: currentUser, success_msg, expTable });
+      res.render('index', { user: currentUser, success_msg, expTable });
   
     } catch (err) {
       console.error('Error sending friend request:', err);
