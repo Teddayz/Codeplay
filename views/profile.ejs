@@ -46,10 +46,10 @@
   <ul>
     <% user.friendRequests.forEach(request => { %>
       <li> <%= request.username %>
-        <form action="/profile/accept-friend-request/<%= request._id %>" method="POST" style="display:inline;">
+        <form class="friend-request-form" action="/profile/accept-friend-request/<%= request._id %>" method="POST" style="display:inline;">
           <button type="submit">Accept</button>
         </form>
-        <form action="/profile/reject-friend-request/<%= request._id %>" method="POST" style="display:inline;">
+        <form class="friend-request-form" action="/profile/reject-friend-request/<%= request._id %>" method="POST" style="display:inline;">
           <button type="submit">Reject</button>
         </form>
       </li>
@@ -67,6 +67,26 @@
   </div>
 
   </div>
+  <script>
+    document.querySelectorAll('.friend-request-form').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const url = form.action;
+        
+        try {
+          await fetch(url, {
+            method: 'POST',
+            body: formData,
+          });
+          location.reload(); // Refresh the page
+        } catch (err) {
+          console.error('Error:', err);
+          // Optionally show an error message to the user
+        }
+      });
+    });
+  </script>
 
   <%- include('./partials/footer.ejs') %>
 </body>
