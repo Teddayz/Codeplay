@@ -8,7 +8,7 @@
 <body>
   <%- include('../partials/nav.ejs') %>
 
-  <div class="content create-quiz container">
+  <main class="content create-quiz container">
     <h1>New Quiz</h1>
     <form id="quizForm" action="/quizzes" method="POST">
       <div class="inputBox">
@@ -72,7 +72,7 @@
       <button type="button" class="btn" onclick="addQuestion()">Add Another Question</button>
       <button type="submit" class="btn submit">Add Quiz</button>
     </form>
-  </div>
+  </main>
 
   <%- include('../partials/footer.ejs') %>
 
