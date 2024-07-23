@@ -15,16 +15,6 @@
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
       </div>
-      
-      <div class="inputBox">
-        <label for="language">Choose a language:</label>
-        <select name="language" id="language">
-          <option value="Java">Java</option>
-          <option value="Python">Python</option>
-          <option value="JavaScript">JavaScript</option>
-        </select>
-      </div>
-      
       <div class="inputBox">
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required>
@@ -39,26 +29,32 @@
       </div>
 
       <div id="questionsContainer">
-        <div class="question">
+        <div class="question" data-index="0">
           <div class="inputBox">
             <label for="question1">Question 1:</label>
             <input type="text" id="question1" name="questions[0][question]" required>
           </div>
-          <div class="inputBox option">
-            <input type="radio" id="q0o0" name="questions[0][correctAnswer]" value="0" required>
-            <label for="q0o0">Option 1: <input type="text" name="questions[0][options][]" required></label>
+          <div class="inputBox">
+            <label for="option1_1">Option 1:</label>
+            <input type="text" id="option1_1" name="questions[0][options][]" required oninput="updateCorrectAnswerOptions(0)">
           </div>
-          <div class="inputBox option">
-            <input type="radio" id="q0o1" name="questions[0][correctAnswer]" value="1">
-            <label for="q0o1">Option 2: <input type="text" name="questions[0][options][]" required></label>
+          <div class="inputBox">
+            <label for="option1_2">Option 2:</label>
+            <input type="text" id="option1_2" name="questions[0][options][]" required oninput="updateCorrectAnswerOptions(0)">
           </div>
-          <div class="inputBox option">
-            <input type="radio" id="q0o2" name="questions[0][correctAnswer]" value="2">
-            <label for="q0o2">Option 3: <input type="text" name="questions[0][options][]" required></label>
+          <div class="inputBox">
+            <label for="option1_3">Option 3:</label>
+            <input type="text" id="option1_3" name="questions[0][options][]" required oninput="updateCorrectAnswerOptions(0)">
           </div>
-          <div class="inputBox option">
-            <input type="radio" id="q0o3" name="questions[0][correctAnswer]" value="3">
-            <label for="q0o3">Option 4: <input type="text" name="questions[0][options][]" required></label>
+          <div class="inputBox">
+            <label for="option1_4">Option 4:</label>
+            <input type="text" id="option1_4" name="questions[0][options][]" required oninput="updateCorrectAnswerOptions(0)">
+          </div>
+          <div class="inputBox">
+            <label for="correctAnswer1">Correct Answer:</label>
+            <select id="correctAnswer1" name="questions[0][correctAnswer]" required>
+              <option value="">Select the correct answer</option>
+            </select>
           </div>
         </div>
       </div>
@@ -73,33 +69,60 @@
   <script>
     let questionCount = 1;
 
+    function updateCorrectAnswerOptions(index) {
+      const questionDiv = document.querySelector(`.question[data-index="${index}"]`);
+      const options = questionDiv.querySelectorAll(`input[name="questions[${index}][options][]"]`);
+      const correctAnswerSelect = questionDiv.querySelector(`#correctAnswer${index + 1}`);
+
+      // Clear existing options
+      correctAnswerSelect.innerHTML = '<option value="">Select the correct answer</option>';
+
+      // Add options dynamically based on the input values
+      options.forEach((option, idx) => {
+        if (option.value.trim()) {
+          const newOption = document.createElement('option');
+          newOption.value = option.value;
+          newOption.textContent = option.value;
+          correctAnswerSelect.appendChild(newOption);
+        }
+      });
+    }
+
     function addQuestion() {
       const container = document.getElementById('questionsContainer');
+      const index = questionCount;
       questionCount++;
 
       const questionDiv = document.createElement('div');
       questionDiv.classList.add('question');
+      questionDiv.setAttribute('data-index', index);
       
       questionDiv.innerHTML = `
         <div class="inputBox">
           <label for="question${questionCount}">Question ${questionCount}:</label>
-          <input type="text" id="question${questionCount}" name="questions[${questionCount - 1}][question]" required>
+          <input type="text" id="question${questionCount}" name="questions[${index}][question]" required>
         </div>
-        <div class="inputBox option">
-          <input type="radio" id="q${questionCount - 1}o0" name="questions[${questionCount - 1}][correctAnswer]" value="0" required>
-          <label for="q${questionCount - 1}o0">Option 1: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
+        <div class="inputBox">
+          <label for="option${questionCount}_1">Option 1:</label>
+          <input type="text" id="option${questionCount}_1" name="questions[${index}][options][]" required oninput="updateCorrectAnswerOptions(${index})">
         </div>
-        <div class="inputBox option">
-          <input type="radio" id="q${questionCount - 1}o1" name="questions[${questionCount - 1}][correctAnswer]" value="1">
-          <label for="q${questionCount - 1}o1">Option 2: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
+        <div class="inputBox">
+          <label for="option${questionCount}_2">Option 2:</label>
+          <input type="text" id="option${questionCount}_2" name="questions[${index}][options][]" required oninput="updateCorrectAnswerOptions(${index})">
         </div>
-        <div class="inputBox option">
-          <input type="radio" id="q${questionCount - 1}o2" name="questions[${questionCount - 1}][correctAnswer]" value="2">
-          <label for="q${questionCount - 1}o2">Option 3: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
+        <div class="inputBox">
+          <label for="option${questionCount}_3">Option 3:</label>
+          <input type="text" id="option${questionCount}_3" name="questions[${index}][options][]" required oninput="updateCorrectAnswerOptions(${index})">
         </div>
-        <div class="inputBox option">
-          <input type="radio" id="q${questionCount - 1}o3" name="questions[${questionCount - 1}][correctAnswer]" value="3">
-          <label for="q${questionCount - 1}o3">Option 4: <input type="text" name="questions[${questionCount - 1}][options][]" required></label>
+        <div class="inputBox">
+          <label for="option${questionCount}_4">Option 4:</label>
+          <input type="text" id="option${questionCount}_4" name="questions[${index}][options][]" required oninput="updateCorrectAnswerOptions(${index})">
+        </div>
+        <div class="inputBox">
+          <label for="correctAnswer${questionCount}">Correct Answer:</label>
+          <select id="correctAnswer${questionCount}" name="questions[${index}][correctAnswer]" required>
+            <option value="">Select the correct answer</option>
+          </select>
         </div>
       `;
 
