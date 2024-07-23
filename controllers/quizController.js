@@ -73,8 +73,9 @@ const completedQuiz = async (req, res) => {
         if (!quiz) {
             return res.status(404).json({ message: 'Quiz not found' });
         }
-        const expGained = quiz.exp;
-        const { exp, level, levelUp } = await updateUserExp(userId, expGained);
+        const expGained = (score / quiz.questions.length) * quiz.exp;
+        const { exp, totalExp, level, levelUp } = await updateUserExp(userId, expGained);
+        const expTable = [20, 50, 100, 300, 600, 1000];
         res.json({
             message: 'Quiz completed successfully!',
             redirect: '/quizzes'
