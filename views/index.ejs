@@ -12,8 +12,14 @@
   <div class="content">
     <img src="/logoman.png" alt="codeplay logo" class="logo">
     <h1>Welcome to Codeplay!</h1>
-    <p>This is still a work in progress please bear with us!</p>
   </div>
+
+  <% if (typeof success_msg !== 'undefined') { %>
+    <div class="alert alert-success"><%= success_msg %></div>
+  <% } %>
+  <% if (typeof error_msg !== 'undefined') { %>
+    <div class="alert alert-danger"><%= error_msg %></div>
+  <% } %>
   
   <%- include('./partials/footer.ejs') %>
 </body>

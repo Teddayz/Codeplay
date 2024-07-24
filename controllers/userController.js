@@ -33,14 +33,14 @@ const sendFriendRequest = async (req, res) => {
       if (!friend) {
         const error_msg = 'User not found';
         console.log(error_msg);
-        return res.render('profile', { user: currentUser, error_msg, expTable });
+        return res.render('index', { user: currentUser, error_msg, expTable });
       }
   
       // Check if the friend request has already been sent or if the user is already a friend
       if (friend.friendRequests.includes(currentUser._id) || currentUser.friends.includes(friend._id)) {
         const error_msg = 'Friend request already sent or user is already a friend';
         console.log(error_msg);
-        return res.render('profile', { user: currentUser, error_msg, expTable});
+        return res.render('index', { user: currentUser, error_msg, expTable});
       }
   
       // Add friend request to the friend's list
@@ -49,12 +49,12 @@ const sendFriendRequest = async (req, res) => {
   
       const success_msg = 'Friend request sent';
       console.log(success_msg);
-      res.render('profile', { user: currentUser, success_msg, expTable });
+      res.render('index', { user: currentUser, success_msg, expTable });
   
     } catch (err) {
       console.error('Error sending friend request:', err);
       const error_msg = 'Error sending friend request';
-      res.render('profile', { user: req.user, error_msg, expTable });
+      res.render('index', { user: req.user, error_msg, expTable });
     }
   };
   
