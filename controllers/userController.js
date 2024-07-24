@@ -49,7 +49,7 @@ const sendFriendRequest = async (req, res) => {
   
       const success_msg = 'Friend request sent';
       console.log(success_msg);
-      res.render('index', { user: currentUser, success_msg, expTable });
+      res.render('profile', { user: currentUser, success_msg, expTable });
   
     } catch (err) {
       console.error('Error sending friend request:', err);

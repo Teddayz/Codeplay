@@ -9,7 +9,7 @@
 
 <body>
   <%- include('./partials/nav.ejs') %>
-
+  
   <main class="content profile">
     <h1>Welcome, <%= user.username %></h1>
     <div class="exp-bar">
@@ -23,11 +23,18 @@
       <div class="profile-left">
         <div class="friends-section">
           <h2>Friends</h2>
-          <ul class="friends-list">
-            <% user.friends.forEach(friend => { %>
-              <li class="friend"><%= friend.username %>, Level: <%= friend.level %></li>
-            <% }) %>
-          </ul>
+          <% if (user.friends.length === 0) { %>
+            <p>No friends for now ;)</p>
+          <% } else { %>
+            <ul class="friends-list">
+              <% user.friends.forEach(friend => { %>
+                <li class="friend">
+                  <span class="friend-username"><%= friend.username %></span>, 
+                  Level: <span class="friend-level"><%= friend.level %></span>
+                </li>
+              <% }) %>
+            </ul>
+          <% } %>
         </div>
       </div>
       
