@@ -11,5 +11,7 @@ router.post('/accept-friend-request/:id', userController.acceptFriendRequest);
 
 router.post('/reject-friend-request/:id', userController.rejectFriendRequest);
 
+router.post('/delete-friend/:id', userController.removeFriend);
+
 module.exports = router
  

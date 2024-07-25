@@ -123,9 +123,32 @@ const sendFriendRequest = async (req, res) => {
     }
   };
 
+  const removeFriend = async (req, res) => {
+    try {
+      const friendId = req.params.id;
+      const currentUser = await User.findById(req.user.id);
+      const friend = await User.findById(friendId);
+      //Remove friend 
+      currentUser.friends = currentUser.friends.filter(friend => friend.toString() !== friendId);
+      await currentUser.save();
+      //Remove current user from friend
+      friend.friends = friend.friends.filter(friend => friend.toString() !== req.user._id.toString());
+      await friend.save();
+      const success_msg = "Friend Removed";
+      console.log(success_msg);
+
+      res.render('index', { user: currentUser, success_msg, expTable });
+    } catch(err) {
+      console.error('Error deleting friend:', err);
+      const error_msg = 'Error deleting friend';
+      res.render('index', { user: req.user, error_msg, expTable });
+    }
+  }
+
 module.exports = {
     getProfile,
     sendFriendRequest,
     acceptFriendRequest,
-    rejectFriendRequest
+    rejectFriendRequest,
+    removeFriend
 };

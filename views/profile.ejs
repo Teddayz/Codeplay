@@ -31,6 +31,10 @@
                 <li class="friend">
                   <span class="friend-username"><%= friend.username %></span>, 
                   Level: <span class="friend-level"><%= friend.level %></span>
+                  <form class="delete-friend-form" action="/profile/delete-friend/<%= friend._id %>" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                  </form>
+          
                 </li>
               <% }) %>
             </ul>
