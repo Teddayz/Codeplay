@@ -32,15 +32,15 @@
                   <span class="friend-username"><%= friend.username %></span>, 
                   Level: <span class="friend-level"><%= friend.level %></span>
                   <form class="delete-friend-form" action="/profile/delete-friend/<%= friend._id %>" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="delete-friend-button" aria-label="Delete friend <%= friend.username %>">Delete</button>
                   </form>
-          
                 </li>
               <% }) %>
             </ul>
           <% } %>
         </div>
       </div>
+      
       
       <div class="profile-right">
         <div class="requests-section">

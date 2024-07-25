@@ -439,14 +439,33 @@ main.content.profile {
 }
 
 .friends-list .friend:hover {
-  background: #0f0; /* Highlight on hover */
-  color: #000; /* Dark text on hover */
+  background: #222; /* Highlight on hover */
+  color: #fff; /* Dark text on hover */
+}
+
+.delete-friend-button {
+  background-color: #0f0; /* Neon green */
+  color: #333; /* Dark color for contrast */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-friend-button:hover {
+  background-color: #0c0;
+}
+
+.delete-friend-button:focus {
+  outline: 2px solid #0c0;
 }
 
 /* Friend Requests */
 .friend-requests {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 10px;
 }
 
 .friend-requests li {
