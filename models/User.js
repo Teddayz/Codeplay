@@ -33,7 +33,11 @@ const userSchema = new Schema({
     friendRequests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    completedQuizzes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Quiz'
+    }],
 
  });
 
