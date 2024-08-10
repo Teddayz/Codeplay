@@ -26,9 +26,9 @@
           <% if (user.friends.length === 0) { %>
             <p>No friends for now ;)</p>
           <% } else { %>
-            <ul class="friends-list">
+            <ul class="friends-list" id="friendsList">
               <% user.friends.forEach(friend => { %>
-                <li class="friend">
+                <li class="friend" data-level="<%= friend.level %>">
                   <span class="friend-username"><%= friend.username %></span>, 
                   Level: <span class="friend-level"><%= friend.level %></span>
                   <form class="delete-friend-form" action="/profile/delete-friend/<%= friend._id %>" method="POST" style="display:inline;">
@@ -105,6 +105,24 @@
 
     
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      sortFriendsByLevel();
+    });
+
+    function sortFriendsByLevel() {
+      const list = document.getElementById('friendsList');
+      const friends = Array.from(list.getElementsByClassName('friend'));
+
+      // Sort friends by level in descending order
+      friends.sort((a, b) => b.dataset.level - a.dataset.level);
+
+      // Re-append the sorted friends to the list
+      friends.forEach(friend => list.appendChild(friend));
+    }
+  </script>
+
 
   <%- include('./partials/footer.ejs') %>
 </body>
