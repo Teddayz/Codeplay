@@ -7,15 +7,16 @@
 </head>
 <body>
   <%- include('../partials/nav.ejs') %>
+
   <% if (typeof success_msg !== 'undefined') { %>
     <div class="alert alert-success"><%= success_msg %></div>
   <% } %>
   <% if (typeof error_msg !== 'undefined') { %>
     <div class="alert alert-danger"><%= error_msg %></div>
   <% } %>
-  <div class="content quiz">
-    <h2>All Quizzes</h2>
 
+  <div class="content quiz">
+    <h2>Available Quizzes</h2>
     <form action="/quizzes" method="GET">
       <label for="language">Filter:</label>
       <select id="language" name="language" onchange="this.form.submit()">
@@ -26,17 +27,29 @@
       </select>
     </form>
     
-    <% if (quizzes.length > 0) { %>
-      <% quizzes.forEach(quiz => { %>
+    <% if (availableQuizzes.length > 0) { %>
+      <% availableQuizzes.forEach(quiz => { %>
         <a class="single" href="/quizzes/<%= quiz._id %>">
           <h3 class="title"><%= quiz.title %></h3>
           <p class="author"><%= quiz.snippet %></p>
         </a>
       <% }) %>
     <% } else { %>
-      <p>There are no quizzes to display...</p>
+      <p>No available quizzes at the moment...</p>
     <% } %>
   </div>
+
+  <% if (completedQuizzes.length > 0) { %>
+    <div class="content quiz">
+      <h2>Completed Quizzes</h2>
+      <% completedQuizzes.forEach(quiz => { %>
+        <a class="single completed" href="/quizzes/<%= quiz._id %>">
+          <h3 class="title"><%= quiz.title %></h3>
+          <p class="author"><%= quiz.snippet %></p>
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
 
   <%- include('../partials/footer.ejs') %>
 </body>

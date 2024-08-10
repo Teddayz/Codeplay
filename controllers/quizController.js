@@ -4,18 +4,28 @@ const User = require('../models/user');
 
 const { updateUserExp } = require('../utils/exp');
 
-const quiz_index = (req, res) => {
+const quiz_index = async (req, res) => {
     const language = req.query.language;
-
     const query = language ? { language } : {};
 
-    Quiz.find(query)
-    .then(result => {
-      res.render('quizzes/index', { title: 'All Quizzes', quizzes: result, selectedLanguage: language });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    try {
+        const quizzes = await Quiz.find(query);
+        const user_id = req.user.id;
+        const user = await User.findById(user_id);
+
+        const completedQuizzes = quizzes.filter(quiz => user.completedQuizzes.includes(quiz._id.toString()));
+        const availableQuizzes = quizzes.filter(quiz => !user.completedQuizzes.includes(quiz._id.toString()));
+
+        res.render('quizzes/index', {
+            title: 'All Quizzes',
+            availableQuizzes,
+            completedQuizzes,
+            selectedLanguage: language
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred while fetching the quizzes.');
+    }
 };
 
 const quiz_details = async (req, res) => {

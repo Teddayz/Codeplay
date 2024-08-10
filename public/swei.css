@@ -934,3 +934,7 @@ button.btn.submit {
 button.btn.submit:hover {
   background: #0c0;
 }
+
+.content.container .btn {
+  color: #000; /* Set the text color to black */
+}
