@@ -78,31 +78,43 @@
 
   <script>
     let questionCount = 1;
-
+  
     function updateCorrectAnswerOptions(index) {
       const questionDiv = document.querySelector(`.question[data-index="${index}"]`);
       const options = questionDiv.querySelectorAll(`input[name="questions[${index}][options][]"]`);
       const correctAnswerSelect = questionDiv.querySelector(`#correctAnswer${index + 1}`);
-
+  
       // Clear existing options
       correctAnswerSelect.innerHTML = '<option value="">Select the correct answer</option>';
-
+  
+      // Track entered values
+      const enteredValues = [];
+  
       // Add options dynamically based on the input values
       options.forEach((option, idx) => {
-        if (option.value.trim()) {
-          const newOption = document.createElement('option');
-          newOption.value = option.value;
-          newOption.textContent = option.value;
-          correctAnswerSelect.appendChild(newOption);
+        const optionValue = option.value.trim();
+        
+        if (optionValue) {
+          if (enteredValues.includes(optionValue)) {
+            option.setCustomValidity("Duplicate option. Please enter a unique answer.");
+          } else {
+            enteredValues.push(optionValue);
+            option.setCustomValidity(""); // Clear any previous validation message
+  
+            const newOption = document.createElement('option');
+            newOption.value = optionValue;
+            newOption.textContent = optionValue;
+            correctAnswerSelect.appendChild(newOption);
+          }
         }
       });
     }
-
+  
     function addQuestion() {
       const container = document.getElementById('questionsContainer');
       const index = questionCount;
       questionCount++;
-
+  
       const questionDiv = document.createElement('div');
       questionDiv.classList.add('question');
       questionDiv.setAttribute('data-index', index);
@@ -135,9 +147,10 @@
           </select>
         </div>
       `;
-
+  
       container.appendChild(questionDiv);
     }
   </script>
+  
 </body>
 </html>
