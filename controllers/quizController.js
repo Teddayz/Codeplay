@@ -118,10 +118,19 @@ const quiz_submit = async (req, res) => {
         }
 
         let score = 0;
+        let detailedResults = [];
         quiz.questions.forEach((question, index) => {
-            if (question.correctAnswer === answers[index]) {
+            const userAnswer = answers[index];
+            const correct = question.correctAnswer === userAnswer;
+            if (correct) {
                 score++;
             }
+            detailedResults.push({
+                question: question.question,
+                userAnswer,
+                correctAnswer: question.correctAnswer,
+                correct,
+            })
         });
         const expGained = Math.ceil((score / quiz.questions.length) * quiz.exp);
         const { exp, totalExp, level, levelUp } = await updateUserExp(userId, expGained);
@@ -140,7 +149,7 @@ const quiz_submit = async (req, res) => {
         user.completedQuizzes.push(id);
         await user.save();
 
-        res.render('quizzes/result', { quiz, score, expGained, exp, level, levelUp, expTable, totalExp, title: 'Quiz Result' });
+        res.render('quizzes/result', { quiz, score, expGained, exp, level, levelUp, expTable, totalExp, detailedResults, title: 'Quiz Result' });
     } catch (err) {
         console.error('Error submitting quiz:', err);
         res.status(500).send('An error occurred while submitting the quiz.');

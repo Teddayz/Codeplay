@@ -7,20 +7,39 @@
 </head>
 <body>
   <%- include('../partials/nav.ejs') %>
-
+<br><br><br>
   <div class="content container">
-    <h1 class="quiz-title">Quiz Result</h1>
-    <h2 class="quiz-title"><%= quiz.title %></h2>
-    <p class="quiz-result">You scored <%= score %> out of <%= quiz.questions.length %>.</p>
-    <p class="quiz-result">Experience Gained: <%= expGained %></p>
-    <p class="quiz-result">Experience to next level: <%= expTable[level - 1] - exp %></p>
-    <p class="quiz-result">Total Experience: <%= totalExp %></p>
-    <p class="quiz-result">Level: <%= level %></p>
-    <% if (levelUp) { %>
-      <p class="quiz-result">Congratulations! You leveled up!</p>
-    <% } %>
-    <a href="/quizzes" class="btn">Back to All Quizzes</a>
-  </div>
+    <h1><%= quiz.title %> - Results</h1>
+    <p>Your Score: <%= score %> / <%= quiz.questions.length %></p>
+    <p>Experience Gained: <%= expGained %></p>
+    <p>Current Level: <%= level %></p>
+    <p>Total Experience: <%= totalExp %></p>
+
+
+    <h1 class="quiz-title"><%= quiz.title %></h1>
+<form>
+  <% quiz.questions.forEach((question, index) => { %>
+    <div class="question-block">
+      <div class="inputBox">
+        <h2 class="question-title">Question <%= index + 1 %>: <%= question.question %></h2>
+      </div>
+      <div class="options">
+        <% question.options.forEach((option, optionIndex) => { 
+            const isCorrect = question.correctAnswer === option;
+            const userAnswer = detailedResults[index] ? detailedResults[index].userAnswer : null;
+            const isSelected = userAnswer === option;
+            const optionClass = isCorrect ? 'correct' : (isSelected ? 'incorrect' : '');
+        %>
+          <div class="inputBox option <%= optionClass %>">
+            <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" <%= isSelected ? 'checked' : '' %> disabled>
+            <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  <% }) %>
+</form>
+
 
   <%- include('../partials/footer.ejs') %>
 </body>
