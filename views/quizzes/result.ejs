@@ -7,39 +7,44 @@
 </head>
 <body>
   <%- include('../partials/nav.ejs') %>
-<br><br><br>
+  <br><br><br><br>
   <div class="content container">
     <h1><%= quiz.title %> - Results</h1>
-    <p>Your Score: <%= score %> / <%= quiz.questions.length %></p>
-    <p>Experience Gained: <%= expGained %></p>
-    <p>Current Level: <%= level %></p>
-    <p>Total Experience: <%= totalExp %></p>
-
-
-    <h1 class="quiz-title"><%= quiz.title %></h1>
-<form>
-  <% quiz.questions.forEach((question, index) => { %>
-    <div class="question-block">
-      <div class="inputBox">
+    <ul class="stats" id="stats">
+      <span class="score">Your Score: <%= score %> / <%= quiz.questions.length %></span>
+      <span class="expEarned">Experience Gained: <%= expGained %></span>
+      <span class="currentLvl">Current Level: <%= level %></span>
+      <span class="totalExp">Total Experience: <%= totalExp %></span>
+    </ul>
+    
+<br><br>
+    <% quiz.questions.forEach((question, index) => { %>
+      <div class="question-block">
         <h2 class="question-title">Question <%= index + 1 %>: <%= question.question %></h2>
+        <div class="options">
+          <% question.options.forEach((option, optionIndex) => { 
+              const isCorrect = question.correctAnswer === option;
+              const userAnswer = detailedResults[index] ? detailedResults[index].userAnswer : null;
+              const isSelected = userAnswer === option;
+              const optionClass = isCorrect ? 'correct' : (isSelected ? 'incorrect' : '');
+          %>
+            <div class="ansBox option <%= optionClass %>">
+              <input 
+                type="radio" 
+                id="q<%= index %>o<%= optionIndex %>" 
+                name="answers[<%= index %>]" 
+                value="<%= option %>" 
+                <%= isSelected ? 'checked' : '' %> 
+                disabled 
+                aria-label="Option <%= optionIndex + 1 %> <%= isCorrect ? 'Correct' : (isSelected ? 'Incorrect' : '') %>">
+              <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
+            </div>
+          <% }) %>
+        </div>
       </div>
-      <div class="options">
-        <% question.options.forEach((option, optionIndex) => { 
-            const isCorrect = question.correctAnswer === option;
-            const userAnswer = detailedResults[index] ? detailedResults[index].userAnswer : null;
-            const isSelected = userAnswer === option;
-            const optionClass = isCorrect ? 'correct' : (isSelected ? 'incorrect' : '');
-        %>
-          <div class="inputBox option <%= optionClass %>">
-            <input type="radio" id="q<%= index %>o<%= optionIndex %>" name="answers[<%= index %>]" value="<%= option %>" <%= isSelected ? 'checked' : '' %> disabled>
-            <label for="q<%= index %>o<%= optionIndex %>"><%= option %></label>
-          </div>
-        <% }) %>
-      </div>
-    </div>
-  <% }) %>
-</form>
+    <% }) %>
 
+    <br>
 
   <%- include('../partials/footer.ejs') %>
 </body>
